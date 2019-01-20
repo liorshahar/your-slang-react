@@ -28,7 +28,7 @@ class App extends Component {
       <React.Fragment>
         <NavBar tvShows={tvShows} />
         <TvShows tvShows={tvShows} onClickTvShow={this.handleTvShowCLicked} />
-        <Tabel />
+        <Tabel tvShows={tvShows} />
       </React.Fragment>
     );
   }
