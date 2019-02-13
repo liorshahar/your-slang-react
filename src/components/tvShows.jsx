@@ -1,14 +1,19 @@
 import React, { Component } from "react";
-import chafranim from "../images/chafranim.png";
-/* TODO -> make it dynamic
-  1) add to db image path
-  2) return with db query the path
-  3) render dynamic list
-*/
+import { getAllTvShows } from "../utils/getTvShow";
+
 class TvShows extends Component {
-  state = {};
+  state = {
+    allTvShows: []
+  };
+
+  componentDidMount() {
+    let jsonData = getAllTvShows();
+    this.setState({ allTvShows: jsonData.responseJSON });
+  }
+
   render() {
-    const { tvShows, onClickTvShow } = this.props;
+    const tvShows = this.state.allTvShows;
+    const { onClickTvShow } = this.props;
 
     return (
       <div className="container" style={{ marginTop: 40 }}>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Chart } from "react-google-charts";
 
 class Tabel extends Component {
-  render() {
+  renderPie() {
     const pieOptions = {
       title: "",
       is3D: true,
@@ -53,7 +53,6 @@ class Tabel extends Component {
     return (
       <div className={"container"} style={{ marginTop: 100 }}>
         <div className="App">
-          {/* <Chart chartType="BarChart" width="100%" height="400px" data={data} /> */}
           <Chart
             chartType="PieChart"
             data={data}
@@ -66,6 +65,15 @@ class Tabel extends Component {
         </div>
       </div>
     );
+  }
+
+  renderTable() {}
+  render() {
+    if (this.props.tableView === "allTvShow") {
+      return this.renderPie();
+    } else if (this.props.tableView === "byName") {
+      return <div>sdfsd</div>;
+    }
   }
 }
 

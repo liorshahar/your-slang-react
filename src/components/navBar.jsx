@@ -1,8 +1,17 @@
 import React, { Component } from "react";
+import { getAllTvShows } from "../utils/getTvShow";
+
 class NavBar extends Component {
-  state = {};
+  state = {
+    allTvShows: []
+  };
+
+  componentDidMount() {
+    let jsonData = getAllTvShows();
+    this.setState({ allTvShows: jsonData.responseJSON });
+  }
   render() {
-    const { tvShows } = this.props;
+    const tvShows = this.state.allTvShows;
     return (
       <div className="container">
         <header className="blog-header py-3">
