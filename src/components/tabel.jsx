@@ -4,7 +4,7 @@ import { Chart } from "react-google-charts";
 class Tabel extends Component {
   renderPie() {
     const pieOptions = {
-      title: "",
+      title: "כמות ציוצים לתוכנית",
       is3D: true,
       slices: [
         {
@@ -43,13 +43,9 @@ class Tabel extends Component {
     let data = [];
     data.push(["שם התוכנית", "כמות ציוצים"]);
     tvShows.forEach(element => {
-      data.push([...element.splice(0, 2)]);
+      data.push([element.item._id, element.item.tweets]);
     });
 
-    data.sort((a, b) => {
-      return a[1] - b[1];
-    });
-    console.log(data);
     return (
       <div className={"container"} style={{ marginTop: 100 }}>
         <div className="App">
@@ -67,12 +63,86 @@ class Tabel extends Component {
     );
   }
 
-  renderTable() {}
+  renderBarChart() {
+    const tvShowExpression = this.props.tvShowByName;
+    const data1 = [];
+    const charOptions = {
+      legend: { position: "none" },
+
+      hAxis: {
+        title: "כמות ציוצים",
+        titleTextStyle: {
+          color: "#000",
+          fontName: "sans-serif",
+          fontSize: 30,
+          bold: true,
+          italic: false
+        }
+      },
+      vAxis: {
+        title: "הביטוי",
+        textStyle: {
+          color: "#000",
+          fontSize: 15,
+          bold: true,
+          lineWidth: 20
+        },
+        titleTextStyle: {
+          color: "#000",
+          fontName: "sans-serif",
+          fontSize: 30,
+          bold: true,
+          italic: false
+        }
+      }
+    };
+
+    data1.push(["", "", { role: "style" }]);
+    let maxN = Math.max.apply(
+      Math,
+      tvShowExpression.sentences.map(function(o) {
+        return o.tweets.length;
+      })
+    );
+
+    console.log("----" + maxN + "----");
+
+    tvShowExpression.sentences.forEach(element => {
+      if (element.tweets.length > 0) {
+        if (element.tweets.length < maxN * 0.3) {
+          data1.push([element.text, element.tweets.length, "red"]);
+        } else if (element.tweets.length < maxN * 0.6) {
+          data1.push([element.text, element.tweets.length, "yellow"]);
+        } else {
+          data1.push([element.text, element.tweets.length, "green"]);
+        }
+      }
+    });
+
+    data1.sort((a, b) => {
+      return a[1] - b[1];
+    });
+
+    return (
+      <div className={"container"} style={{ marginTop: 100 }}>
+        <Chart
+          chartType="BarChart"
+          width="100%"
+          height="400px"
+          data={data1}
+          options={charOptions}
+        />
+      </div>
+    );
+  }
+
   render() {
     if (this.props.tableView === "allTvShow") {
       return this.renderPie();
-    } else if (this.props.tableView === "byName") {
-      return <div>sdfsd</div>;
+    }
+    if (this.props.tableView === "byName") {
+      console.log("this.renderBarChart()");
+      return this.renderBarChart();
     }
   }
 }

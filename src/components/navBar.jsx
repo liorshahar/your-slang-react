@@ -1,17 +1,8 @@
 import React, { Component } from "react";
-import { getAllTvShows } from "../utils/getTvShow";
 
 class NavBar extends Component {
-  state = {
-    allTvShows: []
-  };
-
-  componentDidMount() {
-    let jsonData = getAllTvShows();
-    this.setState({ allTvShows: jsonData.responseJSON });
-  }
   render() {
-    const tvShows = this.state.allTvShows;
+    const tvShows = this.props.tvShows;
     return (
       <div className="container">
         <header className="blog-header py-3">
@@ -47,8 +38,8 @@ class NavBar extends Component {
         <div className="nav-scroller py-1 mb-2">
           <nav className="nav d-flex justify-content-between">
             {tvShows.map(tvShow => (
-              <a key={tvShow[0]} className="p-2 text-muted" href="#.">
-                {tvShow[0]}
+              <a key={tvShow.item.showId} className="p-2 text-muted" href="#.">
+                {tvShow.item._id}
               </a>
             ))}
           </nav>

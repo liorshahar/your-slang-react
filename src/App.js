@@ -10,32 +10,33 @@ class App extends Component {
   state = {
     allTvShows: [],
     tableView: "allTvShow",
-    tvShowByNameArr: []
+    tvShowByName: {}
   };
+
   componentDidMount() {
     let jsonData = getAllTvShows();
     this.setState({ allTvShows: jsonData.responseJSON });
   }
 
-  handleTvShowCLicked = event => {
-    let parentDiv = event.target.parentNode;
-    let tvShowName = parentDiv.children[1].innerText;
-    console.log("Tv Show Name: " + tvShowName);
-    let jsonData = tvShowByName(tvShowName);
+  handleTvShowCLicked = tvShow => {
+    let jsonData = tvShowByName(tvShow);
     let ShowByNameArr = jsonData.responseJSON;
-    this.setState({ tvShowByNameArr: ShowByNameArr, tableView: "byName" });
+    this.setState({ tvShowByName: ShowByNameArr[0], tableView: "byName" });
   };
 
   render() {
-    const { allTvShows, tableView, tvShowByNameArr } = this.state;
+    const { allTvShows, tableView, tvShowByName } = this.state;
     return (
       <React.Fragment>
-        <NavBar />
-        <TvShows onClickTvShow={this.handleTvShowCLicked} />
+        <NavBar tvShows={allTvShows} />
+        <TvShows
+          onClickTvShow={this.handleTvShowCLicked}
+          tvShows={allTvShows}
+        />
         <Tabel
           tvShows={allTvShows}
           tableView={tableView}
-          tvShowByName={tvShowByNameArr}
+          tvShowByName={tvShowByName}
         />
       </React.Fragment>
     );
