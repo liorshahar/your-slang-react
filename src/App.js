@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import NavBar from "./components/navBar";
 import TvShows from "./components/tvShows";
 import Tabel from "./components/tabel";
+import TopThree from "./components/topThree";
 import { getAllTvShows } from "./utils/getTvShow";
 import { tvShowByName } from "./utils/getTvShow";
+
 import "./App.css";
 
 class App extends Component {
@@ -24,15 +26,18 @@ class App extends Component {
     this.setState({ tvShowByName: ShowByNameArr[0], tableView: "byName" });
   };
 
-  handleTop3CLicked = top3 => {
-    console.log(top3);
+  handleResetTableView = () => {
+    this.setState({ tableView: "allTvShow" });
   };
 
   render() {
     const { allTvShows, tableView, tvShowByName } = this.state;
     return (
       <React.Fragment>
-        <NavBar tvShows={allTvShows} />
+        <NavBar
+          tvShows={allTvShows}
+          reseteTableView={this.handleResetTableView}
+        />
         <TvShows
           onClickTvShow={this.handleTvShowCLicked}
           onTop3Clicked={this.handleTop3CLicked}
@@ -43,6 +48,7 @@ class App extends Component {
           tableView={tableView}
           tvShowByName={tvShowByName}
         />
+        <TopThree />
       </React.Fragment>
     );
   }

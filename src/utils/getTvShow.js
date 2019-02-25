@@ -15,3 +15,11 @@ export function tvShowByName(name) {
     async: false // make true to avoid waiting for the request to be complete
   });
 }
+
+export function top3tvShow() {
+  return $.ajax({
+    url: "https://yourslangapi.herokuapp.com/getTvShowByNameRoutes/top/top3",
+    dataType: "json", // type of data we're expecting from server
+    async: false // make true to avoid waiting for the request to be complete
+  });
+}

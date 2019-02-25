@@ -47,17 +47,24 @@ class Tabel extends Component {
     });
 
     return (
-      <div className={"container"} style={{ marginTop: 100 }}>
-        <div className="App">
-          <Chart
-            chartType="PieChart"
-            data={data}
-            options={pieOptions}
-            graph_id="PieChart"
-            width={"100%"}
-            height={"700px"}
-            legend_toggle
-          />
+      <div>
+        <div className="col mb-4" style={{ marginTop: 50 }}>
+          <div className="col-md-12">
+            <h2 className="text-center">ניתוח תוכניות לפי ביטויים</h2>
+          </div>
+        </div>
+        <div className={"container"} style={{ marginTop: 30 }}>
+          <div className="App">
+            <Chart
+              chartType="PieChart"
+              data={data}
+              options={pieOptions}
+              graph_id="PieChart"
+              width={"100%"}
+              height={"700px"}
+              legend_toggle
+            />
+          </div>
         </div>
       </div>
     );
@@ -125,14 +132,21 @@ class Tabel extends Component {
     });
 
     return (
-      <div className={"container"} style={{ marginTop: 100 }}>
-        <Chart
-          chartType="BarChart"
-          width="100%"
-          height="400px"
-          data={data1}
-          options={charOptions}
-        />
+      <div>
+        <div className="col mb-4" style={{ marginTop: 50 }}>
+          <div className="col-md-12">
+            <h2 className="text-center">ניתוח ביטויים לתוכנית</h2>
+          </div>
+        </div>
+        <div className={"container"} style={{ marginTop: 30 }}>
+          <Chart
+            chartType="BarChart"
+            width="100%"
+            height="400px"
+            data={data1}
+            options={charOptions}
+          />
+        </div>
       </div>
     );
   }

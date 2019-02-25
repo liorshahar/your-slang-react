@@ -29,15 +29,6 @@ class TvShows extends Component {
             );
           })}
         </div>
-        <div
-          className="col mb-4"
-          onClick={() => onTop3Clicked("top3")}
-          style={{ cursor: "pointer" }}
-        >
-          <div className="col-md-12">
-            <h3 className="text-center">TOP 3</h3>
-          </div>
-        </div>
       </div>
     );
   }

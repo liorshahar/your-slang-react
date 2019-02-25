@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class NavBar extends Component {
   render() {
-    const tvShows = this.props.tvShows;
+    const { tvShows, reseteTableView } = this.props;
+
     return (
       <div className="container">
         <header className="blog-header py-3">
@@ -49,7 +50,11 @@ class NavBar extends Component {
           style={{ height: 150 }}
         >
           <div className="col-md-6 px-0 mw-100 pull-right">
-            <a className="display-4 text-right title" href="#.">
+            <a
+              className="display-4 text-right title"
+              href="#."
+              onClick={() => reseteTableView()}
+            >
               ? מה הסלנג ש'ך
             </a>
           </div>
