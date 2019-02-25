@@ -84,8 +84,7 @@ class Tabel extends Component {
         textStyle: {
           color: "#000",
           fontSize: 15,
-          bold: true,
-          lineWidth: 20
+          bold: true
         },
         titleTextStyle: {
           color: "#000",
