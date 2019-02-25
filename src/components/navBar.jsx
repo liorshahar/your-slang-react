@@ -49,7 +49,9 @@ class NavBar extends Component {
           style={{ height: 150 }}
         >
           <div className="col-md-6 px-0 mw-100 pull-right">
-            <h1 className="display-4 text-right">מה הסלנג ש'ך</h1>
+            <a className="display-4 text-right title" href="#.">
+              ? מה הסלנג ש'ך
+            </a>
           </div>
         </div>
       </div>

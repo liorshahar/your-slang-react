@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 class TvShows extends Component {
   render() {
-    const { tvShows, onClickTvShow } = this.props;
+    const { tvShows, onClickTvShow, onTop3Clicked } = this.props;
 
     return (
       <div className="container" style={{ marginTop: 40 }}>
@@ -28,6 +28,15 @@ class TvShows extends Component {
               </div>
             );
           })}
+        </div>
+        <div
+          className="col mb-4"
+          onClick={() => onTop3Clicked("top3")}
+          style={{ cursor: "pointer" }}
+        >
+          <div className="col-md-12">
+            <h3 className="text-center">TOP 3</h3>
+          </div>
         </div>
       </div>
     );
