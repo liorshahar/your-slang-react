@@ -67,8 +67,10 @@ class Tabel extends Component {
     const tvShowExpression = this.props.tvShowByName;
     const data1 = [];
     const charOptions = {
+      chartArea: {
+        left: 300
+      },
       legend: { position: "none" },
-
       hAxis: {
         title: "כמות ציוצים",
         titleTextStyle: {

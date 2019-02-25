@@ -24,6 +24,10 @@ class App extends Component {
     this.setState({ tvShowByName: ShowByNameArr[0], tableView: "byName" });
   };
 
+  handleTop3CLicked = top3 => {
+    console.log(top3);
+  };
+
   render() {
     const { allTvShows, tableView, tvShowByName } = this.state;
     return (
@@ -31,6 +35,7 @@ class App extends Component {
         <NavBar tvShows={allTvShows} />
         <TvShows
           onClickTvShow={this.handleTvShowCLicked}
+          onTop3Clicked={this.handleTop3CLicked}
           tvShows={allTvShows}
         />
         <Tabel
