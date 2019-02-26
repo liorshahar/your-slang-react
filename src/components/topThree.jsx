@@ -8,7 +8,7 @@ class TopThree extends Component {
     first: 0,
     second: 0,
     third: 0,
-    intervalID: null
+    displayGauge: false
   };
   componentDidMount() {
     let jsonData = top3tvShow();
@@ -26,12 +26,15 @@ class TopThree extends Component {
               className="display-4 text-right title"
               href="#."
               style={{ lineHeight: 0.1 }}
+              onMouseEnter={() => {
+                this.setState({ displayGauge: true });
+              }}
             >
               ...והזוכים הם
             </a>
           </div>
         </div>
-        <div>{this.renderGauge()}</div>
+        <div>{this.state.displayGauge ? this.renderGauge() : <div />}</div>
       </div>
     );
   }
@@ -41,26 +44,34 @@ class TopThree extends Component {
       return <div />;
     }
     return (
-      <Chart
-        chartType="Gauge"
-        loader={<div>Loading Chart</div>}
-        data={[
-          ["Label", "Value"],
-          ["Memory", 150],
-          ["CPU", 100],
-          ["Network", 100]
-        ]}
-        options={{
-          width: 800,
-          height: 400,
-          redFrom: 90,
-          redTo: 100,
-          yellowFrom: 75,
-          yellowTo: 90,
-          minorTicks: 5
-        }}
-        rootProps={{ "data-testid": "1" }}
-      />
+      <div>
+        <Chart
+          chartType="Gauge"
+          loader={<div>Loading Chart</div>}
+          data={[
+            ["Label", "Value"],
+            [this.state.top3[0]._id.sentences, this.state.top3[0]._id.tweets],
+            [this.state.top3[1]._id.sentences, this.state.top3[1]._id.tweets],
+            [this.state.top3[2]._id.sentences, this.state.top3[2]._id.tweets]
+          ]}
+          options={{
+            width: "100%",
+            height: 600,
+            redFrom: 0,
+            redTo: 66,
+            yellowFrom: 66,
+            yellowTo: 122,
+            greenFrom: 122,
+            greenTo: 200,
+            minorTicks: 10,
+            majorTicks: [0, 200],
+            radius: 30,
+            max: 200,
+            min: 0
+          }}
+          rootProps={{ "data-testid": "1" }}
+        />
+      </div>
     );
   }
 }
